@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.oapi_userprovider.dao.UserDao">
+
+    <insert id="insert">
+        <selectKey keyProperty="id" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+        insert into t_user(name, pass, phone)
+        values (#{name}, #{pass}, #{phone})
+    </insert>
+    <insert id="add">
+        insert into t_userlog(uid,info,type,ctime)
+        values (#{uid}, #{info}, #{type}, now())
+    </insert>
+
+</mapper>

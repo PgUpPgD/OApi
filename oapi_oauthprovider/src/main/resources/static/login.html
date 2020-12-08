@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" onsubmit="return false;">
+        <p>
+            <label>用户名：</label>
+            <input type="test" name="name" placeholder="请输入账号信息">
+        </p>
+        <p>
+            <label>密码：</label>
+            <input type="password" name="password" placeholder="请输入密码">
+        </p>
+<!--        <p><input type="hidden" name="key" value="${app_key}"></p>-->
+        <p>
+            <input type="hidden" name="key" value="onekey">
+        </p>
+        <input type="submit" value="登录">
+    </form>
+    <script type="text/javascript">
+        $("form").submit(function () {
+            $.ajax({
+                type:"post",
+                url:"api/oauth/createCode.do",
+                date:$("form").serialize(),
+                dataType:"json",
+                success:function (data) {
+                    if (data.code == 0) {
+                        alert("登录成功")
+                    }else {
+                        alert(data.msg);
+                    }
+                },
+                error:function () {
+                    alert("ajax请求异常");
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: oapi-userprovider
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oapi?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  type-aliases-package: com.zh.oapi_entity.entity.user
+  mapper-locations: classpath:mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
